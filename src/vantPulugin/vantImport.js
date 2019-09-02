@@ -1,11 +1,16 @@
-import Vue from 'vue';
+import Vue from 'vue'
 
 import {
-    Button,
-    Tabbar,
-    TabbarItem
-} from "vant";
+  Cell, CellGroup,
+  Card,
+  Button,
+  Tabbar,
+  TabbarItem
+} from 'vant'
 
-Vue.use(Button)
-    .use(Tabbar)
-    .use(TabbarItem);
+Vue
+  .use(Cell).use(CellGroup)
+  .use(Card)
+  .use(Button)
+  .use(Tabbar)
+  .use(TabbarItem)
