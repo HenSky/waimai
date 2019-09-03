@@ -47,22 +47,16 @@ export default new Router({
       }
     },
     {
-      path: "/",
-      redirect: "/msite"
-    },
-    {
       path: "/login",
       component: Login
     },
     {
-      path: "/shop/:id",
+      path: "/shop",
       component: Shop,
-      children: [
-        { path: "/shop/foods", component: ShopFoods },
-        { path: "/shop/info", component: ShopInfo },
-        { path: "/shop/pinjia", component: ShopPinjia },
-        { path: "", redirect: "/shop/foods" },
-      ]
-    }
+    },
+    {
+      path: "/",
+      redirect: "/shop"
+    },
   ]
 })
