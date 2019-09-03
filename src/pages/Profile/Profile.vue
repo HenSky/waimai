@@ -93,12 +93,13 @@ export default {
     display: flex;
     padding: 20px 10px;
     box-sizing: border-box;
-    background-color: #02a774;
+    background-color: #fff;
     align-items: center;
+    border-bottom: 1px solid #eee;
     .profile-link {
       position: relative;
       display: block;
-      background: #02a774;
+      background: #fff;
       width: 100%;
     }
     .profile_image {
@@ -120,7 +121,7 @@ export default {
       p {
         font-weight: 700;
         font-size: 18px;
-        color: #fff;
+        color: #000;
         .user-icon {
           display: inline-block;
           margin-left: -15px;
@@ -136,7 +137,7 @@ export default {
         }
         .icon-mobile-number {
           font-size: 14px;
-          color: #fff;
+          color: #000;
           margin-left: 5px;
         }
       }
