@@ -3,12 +3,14 @@
 // 入口js
 import Vue from 'vue'
 import App from './App.vue'
-import router from "./router/index.js";
-import store from "../src/store/store.js"; //引入store
+import router from './router/index.js'
+import store from '../src/store/store.js' // 引入store
 
-import "./mock/mockServer.js"; //引入mock数据
+import './mock/mockServer.js' // 引入mock数据
 
-import "./vantPulugin/vantImport.js";
+import './vantPulugin/vantImport.js'
+import Swiper from 'swiper'
+import 'swiper/dist/css/swiper.min.css'
 
 Vue.config.productionTip = false
 
@@ -17,4 +19,4 @@ new Vue({
   router,
   render: h => h(App),
   store
-}).$mount("#app");
+}).$mount('#app')
