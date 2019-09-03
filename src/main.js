@@ -4,11 +4,21 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index.js'
+<<<<<<< HEAD
 import store from '../src/store/store.js'// 引入store
 
 import './mock/mockServer.js'// 引入mock数据
 
 import './vantPulugin/vantImport.js'
+=======
+import store from '../src/store/store.js' // 引入store
+
+import './mock/mockServer.js' // 引入mock数据
+
+import './vantPulugin/vantImport.js'
+import Swiper from 'swiper'
+import 'swiper/dist/css/swiper.min.css'
+>>>>>>> bc5e756ebe4480718d928ed8f6afe556b26326eb
 
 Vue.config.productionTip = false
 

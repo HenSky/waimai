@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeadTop />首页
+    <HeadTop right_title="登录1" />首页
   </div>
 </template>
 <script>

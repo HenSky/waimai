@@ -10,7 +10,10 @@ import Shop from '../pages/shop/shop.vue'
 import ShopFoods from '../pages/shop/shopFoods/shopFoods.vue'
 import ShopInfo from '../pages/shop/shopInfo/shopInfo.vue'
 import ShopPinjia from '../pages/shop/shopPinjia/shopPinjia.vue'
+<<<<<<< HEAD
 
+=======
+>>>>>>> bc5e756ebe4480718d928ed8f6afe556b26326eb
 Vue.use(Router)
 
 export default new Router({
@@ -62,6 +65,7 @@ export default new Router({
       component: ShopFoods
     },
     {
+<<<<<<< HEAD
       path: '/shop/info',
       component: ShopInfo
     },
@@ -72,6 +76,24 @@ export default new Router({
     {
       path: '',
       redirect: '/shop/foods'
+=======
+      path: '/',
+      redirect: '/msite'
+    },
+    {
+      path: '/login',
+      component: Login
+    },
+    {
+      path: '/shop/:id',
+      component: Shop,
+      children: [
+        { path: '/shop/foods', component: ShopFoods },
+        { path: '/shop/info', component: ShopInfo },
+        { path: '/shop/pinjia', component: ShopPinjia },
+        { path: '', redirect: '/shop/foods' }
+      ]
+>>>>>>> bc5e756ebe4480718d928ed8f6afe556b26326eb
     }
     ]
   }
