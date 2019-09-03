@@ -42,45 +42,66 @@
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img width="120px" height="90px" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1874949404,1045492423&fm=26&gp=0.jpg">
+              <img
+                width="120px"
+                height="90px"
+                src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1874949404,1045492423&fm=26&gp=0.jpg"
+              />
             </div>
             <div class="swiper-slide">
-               <img width="120px" height="90px" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3114641210,3079767940&fm=26&gp=0.jpg">
+              <img
+                width="120px"
+                height="90px"
+                src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3114641210,3079767940&fm=26&gp=0.jpg"
+              />
             </div>
             <div class="swiper-slide">
-               <img width="120px" height="90px" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1859362252,3255389245&fm=15&gp=0.jpg">
+              <img
+                width="120px"
+                height="90px"
+                src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1859362252,3255389245&fm=15&gp=0.jpg"
+              />
             </div>
             <div class="swiper-slide">
-               <img width="120px" height="90px" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1874949404,1045492423&fm=26&gp=0.jpg">
+              <img
+                width="120px"
+                height="90px"
+                src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1874949404,1045492423&fm=26&gp=0.jpg"
+              />
             </div>
             <div class="swiper-slide">
-               <img width="120px" height="90px" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1874949404,1045492423&fm=26&gp=0.jpg">
+              <img
+                width="120px"
+                height="90px"
+                src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1874949404,1045492423&fm=26&gp=0.jpg"
+              />
             </div>
-             <div class="swiper-slide">
-               <img width="120px" height="90px" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1874949404,1045492423&fm=26&gp=0.jpg">
+            <div class="swiper-slide">
+              <img
+                width="120px"
+                height="90px"
+                src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1874949404,1045492423&fm=26&gp=0.jpg"
+              />
             </div>
-
           </div>
 
           <!-- 如果需要分页器 -->
           <div class="swiper-pagination"></div>
           <!-- 如果需要导航按钮 -->
           <!-- <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div> -->
+          <div class="swiper-button-next"></div>-->
           <!-- 如果需要滚动条 -->
           <!-- <div class="swiper-scrollbar"></div> -->
-      </div>
+        </div>
       </section>
       <section class="section">
         <h3 class="section-title">商家信息</h3>
         <van-cell-group>
-        <van-cell title="品类" value="包子粥店,简餐" />
-        <van-cell title="商家电话" value="18501083777" />
-        <van-cell title="地址" value="北京市丰台区太平桥44号" />
-        <van-cell title="营业时间" value="09:35-24:00" />
-
-      </van-cell-group>
-
+          <van-cell title="品类" value="包子粥店,简餐" />
+          <van-cell title="商家电话" value="18501083777" />
+          <van-cell title="地址" value="北京市丰台区太平桥44号" />
+          <van-cell title="营业时间" value="09:35-24:00" />
+        </van-cell-group>
       </section>
     </div>
   </div>
@@ -88,30 +109,31 @@
 <script>
 // import { mapState } from 'vuex'
 export default {
-  name: 'component_name',
-  data () {
-    return { swiper: null }
+  name: "component_name",
+  data() {
+    return { swiper: null };
   },
   // computed: {
   //   ...mapState(['info'])
   // },
 
-  mounted () {
-    this.swiper = new Swiper('.swiper-container', {
-      // autoplay: 3000,
-      // speed: 1000,
-      // autoplayDisableOnInteraction: false,
-      // loop: true,
-      // centeredSlides: true,
-      slidesPerView: 3
-      // pagination: '.swiper-pagination',
-      // paginationClickable: true,
-      // prevButton: '.swiper-button-prev',
-      // nextButton: '.swiper-button-next'
-    })
+  mounted() {
+    this.$nextTick(() => {
+      this.swiper = new Swiper(".swiper-container", {
+        // autoplay: 3000,
+        // speed: 1000,
+        // autoplayDisableOnInteraction: false,
+        // loop: true,
+        // centeredSlides: true,
+        slidesPerView: 3
+        // pagination: '.swiper-pagination',
+        // paginationClickable: true,
+        // prevButton: '.swiper-button-prev',
+        // nextButton: '.swiper-button-next'
+      });
+    });
   }
-}
-
+};
 </script>
 <style lang='less' scoped>
 .info-content {
@@ -144,13 +166,12 @@ export default {
       font-size: 13px;
     }
 
-  .swiper-slide{
-    width: 120px;
-    height: 90px;
-    // background: skyblue;
-    margin-right: 12px;
-  }
-
+    .swiper-slide {
+      width: 120px;
+      height: 90px;
+      // background: skyblue;
+      margin-right: 12px;
+    }
   }
 }
 </style>
