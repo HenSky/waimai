@@ -8,24 +8,24 @@
 </template>
 <script>
 // 导入底部公共组件
-import FooterGuide from "./components/FooterGuide/FooterGuide.vue";
+import FooterGuide from './components/FooterGuide/FooterGuide.vue'
 
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex'
 export default {
-  name: "component_name",
-  mounted() {
-    this.getAddress();
+  name: 'component_name',
+  mounted () {
+
   },
   methods: {
-    ...mapActions(["getAddress"])
+
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   components: {
     FooterGuide
   }
-};
+}
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
 #app {
