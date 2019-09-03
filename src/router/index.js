@@ -47,6 +47,7 @@ export default new Router({
       }
     },
     {
+<<<<<<< HEAD
       path: '/',
       redirect: '/msite'
     },
@@ -64,5 +65,18 @@ export default new Router({
         { path: '', redirect: '/shop/foods' }
       ]
     }
+=======
+      path: "/login",
+      component: Login
+    },
+    {
+      path: "/shop",
+      component: Shop,
+    },
+    {
+      path: "/",
+      redirect: "/shop"
+    },
+>>>>>>> f53c158beca1e7403dbb48d218f043fd9777b7de
   ]
 })
