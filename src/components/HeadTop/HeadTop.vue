@@ -7,14 +7,20 @@
 </template>
 <script>
 export default {
-  name: "component_name",
-  data() {
-    return {};
-  },
+  name: 'component_name',
+  data () {
+    retur
+ 
   props: {
     right_title: String
   }
-};
+}
 </script>
 <style lang='less' scoped>
+p {
+  widows: 100%;
+  height: 30px;
+  background: red;
+}
 </style>
+

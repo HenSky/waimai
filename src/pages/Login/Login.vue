@@ -25,6 +25,11 @@
                 <img ref="chekImg" src="http://localhost:4000/captcha" @click="chekImg" class="img" />
               </van-cell-group>
               <van-button type="primary" @click="nameLogin" size="large">登录</van-button>
+                <van-field v-model="yzm1" placeholder="验证码">
+                  <van-button slot="button" size="small" type="primary">发送验证码</van-button>
+                </van-field>
+              </van-cell-group>
+              <van-button type="primary" size="large">登录</van-button>
               <a href="javascript:;" class="about_us">关于我们</a>
             </div>
           </van-tab>
@@ -42,12 +47,18 @@
               </van-cell-group>
               <van-cell-group>
                 <van-field v-model="code" placeholder="验证码" />
+                  <van-button slot="button" size="small" type="primary" @click="getCode">获取验证码</van-button>
+                </van-field>
+              </van-cell-group>
+              <van-cell-group>
+                <van-field v-model="yzm2" placeholder="验证码" />
               </van-cell-group>
               <section class="login-hint">
                 温馨提示：未注册硅谷外卖帐号的手机号，登录时将自动注册，且代表已同意
                 <a href="javascript:;">《用户服务协议》</a>
               </section>
               <van-button type="primary" size="large" @click="duanxiLogin">登录</van-button>
+              <van-button type="primary" size="large">登录</van-button>
               <a href="javascript:;" class="about-u">关于我们</a>
             </div>
           </van-tab>
@@ -84,10 +95,10 @@ export default {
     chekImg() {
       this.$refs.chekImg.src =
         'http://localhost:4000/captcha?que=' + Date.now();
-    }
-  }
-};
-</script>
+  },
+  
+}
+
 <style lang='less' >
 .loginContain {
   width: 100%;
@@ -118,6 +129,9 @@ export default {
           top: -7px;
           right: -17px;
         }
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
         .about_us {
           display: block;
           font-size: 12px;

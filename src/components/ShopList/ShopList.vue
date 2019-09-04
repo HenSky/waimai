@@ -60,6 +60,7 @@
 <script>
 import { mapState } from "vuex";
 export default {
+<<<<<<< HEAD
   name: "component_name",
   data() {
     return {
@@ -75,9 +76,15 @@ export default {
       console.log(id);
       this.$router.replace(`/shop/${id}`);
     }
+=======
+  name: 'component_name',
+  data () {
+    return {}
+>>>>>>> 496563b1ecc12fd3581d00c9a2c232af9cf4df18
   }
-};
+}
 </script>
+<<<<<<< HEAD
 <style lang='stylus' >
 @import '../../common/stylus/mixins.styl';
 
@@ -332,5 +339,14 @@ export default {
       }
     }
   }
+=======
+<style lang='less' scoped>
+<<<<<<< HEAD
+</style>
+=======
+.box {
+  background: url();
+>>>>>>> 496563b1ecc12fd3581d00c9a2c232af9cf4df18
 }
 </style>
+>>>>>>> bc5e756ebe4480718d928ed8f6afe556b26326eb

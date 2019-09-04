@@ -40,14 +40,19 @@
   </div>
 </template>
 <script>
+<<<<<<< HEAD
 import HeadTop from "../../components/HeadTop/HeadTop.vue"; //引入头部公共组件
 import ShopList from "../../components/ShopList/ShopList.vue"; //引入商家列表组件
 import Swiper from "swiper"; //引入swiper
 import "swiper/dist/css/swiper.css"; //直接引入swiper css
+=======
+import HeadTop from '../../components/HeadTop/HeadTop.vue'
+>>>>>>> 496563b1ecc12fd3581d00c9a2c232af9cf4df18
 
 import { mapState } from "vuex";
 import { mapActions } from "vuex";
 export default {
+<<<<<<< HEAD
   name: "component_name",
   created() {
     this.$store.dispatch("getFootType"); //获取食物分类列表
@@ -92,13 +97,19 @@ export default {
       console.log(arr);
       return arr;
     }
+=======
+  name: 'component_name',
+  data () {
+    return {}
+>>>>>>> 496563b1ecc12fd3581d00c9a2c232af9cf4df18
   },
   components: {
     HeadTop, //头部组件
     ShopList //商家列表组件
   }
-};
+}
 </script>
+<<<<<<< HEAD
 <style lang='stylus' rel="stylesheet/stylus">
 @import '../../common/stylus/mixins.styl';
 
@@ -162,3 +173,7 @@ export default {
   }
 }
 </style>
+=======
+<style lang='less' scoped>
+</style>
+>>>>>>> 496563b1ecc12fd3581d00c9a2c232af9cf4df18

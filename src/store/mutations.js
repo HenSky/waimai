@@ -1,4 +1,3 @@
-
 import {
   RECEIVE_ADDRESS, // 接收地址
   RECEIVE_SHOPLIST, // 接收商铺列表
@@ -6,14 +5,26 @@ import {
 } from './mutations-type.js'
 
 export default {
-  [RECEIVE_ADDRESS](state, { address }) {
+
+  // [RECEIVE_ADDRESS] (state, { address }) {
+  //   state.address = address
+  //   console.log(state.address, 1111)
+  // },
+
+  [RECEIVE_ADDRESS](state, {
+    address
+  }) {
     state.address = address
     console.log(state.address, 1111)
   },
-  [RECEIVE_GOODSTYPE](state, { foodsType }) {
+  [RECEIVE_GOODSTYPE](state, {
+    foodsType
+  }) {
     state.foodsType = foodsType
   },
-  [RECEIVE_SHOPLIST](state, { shopList }) {
+  [RECEIVE_SHOPLIST](state, {
+    shopList
+  }) {
     state.shopList = shopList
   }
 

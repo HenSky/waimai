@@ -73,7 +73,11 @@
   </div>
 </template>
 <script>
+<<<<<<< HEAD
 import HeadTop from "../../components/HeadTop/HeadTop.vue";
+=======
+import HeadTop from '../../components/HeadTop/HeadTop.vue';
+>>>>>>> 496563b1ecc12fd3581d00c9a2c232af9cf4df18
 
 export default {
   name: "component_name",
@@ -86,6 +90,7 @@ export default {
 };
 </script>
 <style lang='less' scoped>
+<<<<<<< HEAD
 .profile {
   .profile-number {
     border-top: 1px solid #fff;
@@ -217,4 +222,6 @@ export default {
     }
   }
 }
+=======
+>>>>>>> 496563b1ecc12fd3581d00c9a2c232af9cf4df18
 </style>

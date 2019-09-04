@@ -8,13 +8,13 @@
 </template>
 <script>
 export default {
-  name: "component_name",
-  data() {
+  name: 'component_name',
+  data () {
     return {
-      active: 0 //底部切换标识
-    };
+      active: 0 // 底部切换标识
+    }
   }
-};
+}
 </script>
 <style lang='less' scoped>
 </style>

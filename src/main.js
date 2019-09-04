@@ -9,7 +9,13 @@ import store from '../src/store/store.js' // 引入store
 import './mock/mockServer.js' // 引入mock数据
 
 import './vantPulugin/vantImport.js'
+import Swiper from 'swiper'
 
+<<<<<<< HEAD
+=======
+import 'swiper/dist/css/swiper.min.css'
+
+>>>>>>> 496563b1ecc12fd3581d00c9a2c232af9cf4df18
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
