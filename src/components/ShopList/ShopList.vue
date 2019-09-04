@@ -7,14 +7,18 @@
 </template>
 <script>
 export default {
-  name: "component_name",
-  data() {
-    return {};
+  name: 'component_name',
+  data () {
+    return {}
   }
-};
+}
 </script>
 <style lang='less' scoped>
+<<<<<<< HEAD
+</style>
+=======
 .box {
   background: url();
 }
 </style>
+>>>>>>> bc5e756ebe4480718d928ed8f6afe556b26326eb

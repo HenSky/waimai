@@ -13,6 +13,15 @@ import FooterGuide from './components/FooterGuide/FooterGuide.vue'
 import { mapActions } from 'vuex'
 export default {
   name: 'component_name',
+<<<<<<< HEAD
+  mounted () {
+
+  },
+  methods: {
+
+  },
+  data () {
+=======
   mounted() {
     this.getAddress()
   },
@@ -20,6 +29,7 @@ export default {
     ...mapActions(['getAddress'])
   },
   data() {
+>>>>>>> bc5e756ebe4480718d928ed8f6afe556b26326eb
     return {}
   },
   components: {

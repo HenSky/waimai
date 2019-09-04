@@ -130,13 +130,13 @@
   </div>
 </template>
 <script>
-import { createHash } from "crypto";
+// import { createHash } from 'crypto'
 export default {
-  name: "component_name",
+  name: 'component_name',
   data() {
-    return {};
+    return {}
   }
-};
+}
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 @import '../../../common/stylus/mixins.styl';
@@ -613,4 +613,3 @@ export default {
   }
 }
 </style>
-

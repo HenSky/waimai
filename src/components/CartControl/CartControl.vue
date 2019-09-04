@@ -7,15 +7,16 @@
 </template>
 <script>
 export default {
+  data () {
+    return {}
   name: "component_name",
-  data() {
     return {
       value: 1
     };
   }
-};
-</script>
+}
 <style lang='less' scoped>
+
 .jian {
   display: block;
   width: 20px;

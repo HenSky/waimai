@@ -11,16 +11,16 @@
   </div>
 </template>
 <script>
-import HeadTop from "../../components/HeadTop/HeadTop.vue";
+import HeadTop from '../../components/HeadTop/HeadTop.vue'
 export default {
-  name: "component_name",
-  data() {
-    return {};
+  name: 'component_name',
+  data () {
+    return {}
   },
   components: {
     HeadTop
   }
-};
+}
 </script>
 <style lang='stylus' >
 .order { // 订单

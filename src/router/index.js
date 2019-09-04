@@ -10,6 +10,7 @@ import Shop from '../pages/shop/shop.vue'
 import ShopFoods from '../pages/shop/shopFoods/shopFoods.vue'
 import ShopInfo from '../pages/shop/shopInfo/shopInfo.vue'
 import ShopPinjia from '../pages/shop/shopPinjia/shopPinjia.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -17,36 +18,51 @@ export default new Router({
   // meta: {
   //   isShowFooter: true
   // }
-  routes: [
-    {
-      path: '/msite',
-      component: Msite,
-      meta: {
-        isShowFooter: true
-      }
+  routes: [{
+    path: '/msite',
+    component: Msite,
+    meta: {
+      isShowFooter: true
+    }
+  },
+  {
+    path: '/order',
+    component: Order,
+    meta: {
+      isShowFooter: true
+    }
+  },
+  {
+    path: '/profile',
+    component: Profile,
+    meta: {
+      isShowFooter: true
+    }
+  },
+  {
+    path: '/search',
+    component: Search,
+    meta: {
+      isShowFooter: true
+    }
+  },
+  {
+    path: '/',
+    redirect: '/msite'
+  },
+  {
+    path: '/login',
+    component: Login
+  },
+  {
+    path: '/shop/:id',
+    component: Shop,
+    children: [{
+      path: '/shop/foods',
+      component: ShopFoods
     },
     {
-      path: '/order',
-      component: Order,
-      meta: {
-        isShowFooter: true
-      }
-    },
-    {
-      path: '/profile',
-      component: Profile,
-      meta: {
-        isShowFooter: true
-      }
-    },
-    {
-      path: '/search',
-      component: Search,
-      meta: {
-        isShowFooter: true
-      }
-    },
-    {
+
       path: '/',
       redirect: '/msite'
     },
@@ -57,12 +73,26 @@ export default new Router({
     {
       path: '/shop/:id',
       component: Shop,
-      children: [
-        { path: '/shop/foods', component: ShopFoods },
-        { path: '/shop/info', component: ShopInfo },
-        { path: '/shop/pinjia', component: ShopPinjia },
-        { path: '', redirect: '/shop/foods' }
+      children: [{
+        path: '/shop/foods',
+        component: ShopFoods
+      },
+      {
+        path: '/shop/info',
+        component: ShopInfo
+      },
+      {
+        path: '/shop/pinjia',
+        component: ShopPinjia
+      },
+      {
+        path: '',
+        redirect: '/shop/foods'
+      }
       ]
+
     }
+    ]
+  }
   ]
 })
