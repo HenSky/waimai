@@ -3,12 +3,21 @@
 // 入口js
 import Vue from 'vue'
 import App from './App.vue'
+
+import Vant from 'vant';
+
+import 'vant/lib/index.css';
+
+Vue.use(Vant);
+
 import router from './router/index.js'
 import store from '../src/store/store.js' // 引入store
 
+import $apis from "./api/api.js";
 import './mock/mockServer.js' // 引入mock数据
 
-import './vantPulugin/vantImport.js'
+
+Vue.prototype.$apis = $apis;
 
 Vue.config.productionTip = false
 

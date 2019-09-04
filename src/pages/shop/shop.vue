@@ -6,7 +6,7 @@
       alt
     />
     <div class="imgHeader">
-      <van-icon name="arrow-left" color="white" class="icon" @click="$router.back()" size="30px" />
+      <van-icon name="arrow-left" color="white" class="icon" @click="back" size="30px" />
       <img src alt />
     </div>
     <div class="headerText">
@@ -217,6 +217,12 @@ export default {
       active: 0, // tab切换的标识,
       show: true
     };
+  },
+  methods: {
+    back() {
+      this.$router.back();
+      console.log(111);
+    }
   },
   components: {
     CartControl,

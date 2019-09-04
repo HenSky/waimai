@@ -23,7 +23,7 @@
                   <van-button slot="button" size="small" type="primary">发送验证码</van-button>
                 </van-field>
               </van-cell-group>
-              <van-button type="primary" size="large">登录</van-button>
+              <van-button type="primary" size="large" @click="loginName">登录</van-button>
               <a href="javascript:;" class="about_us">关于我们</a>
             </div>
           </van-tab>
@@ -51,6 +51,7 @@
   </div>
 </template>
 <script>
+import { reqLoginName } from "../../api/api.js";
 export default {
   name: "component_name",
   data() {
@@ -64,6 +65,14 @@ export default {
     };
   },
   methods: {
+    async loginName() {
+      let { num, mima, yzm1 } = this;
+      let result = this.$apis.reqPwdLogin({
+        name: num,
+        pwd: mima,
+        captcha: yzm1
+      });
+    },
     getCode() {
       alert(1111);
     }
