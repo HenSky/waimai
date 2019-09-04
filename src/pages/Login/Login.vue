@@ -19,11 +19,12 @@
                 />
               </van-cell-group>
               <van-cell-group>
-                <van-field v-model="yzm1" placeholder="验证码">
-                  <van-button slot="button" size="small" type="primary">发送验证码</van-button>
+                <van-field v-model="captcha" placeholder="验证码">
+                  <van-image slot="image" size="small" type="primary"></van-image>
                 </van-field>
+                <img ref="chekImg" src="http://localhost:4000/captcha" @click="chekImg" class="img" />
               </van-cell-group>
-              <van-button type="primary" size="large">登录</van-button>
+              <van-button type="primary" @click="nameLogin" size="large">登录</van-button>
               <a href="javascript:;" class="about_us">关于我们</a>
             </div>
           </van-tab>
@@ -31,17 +32,22 @@
             <div class="login-con">
               <van-cell-group>
                 <van-field v-model="phone" placeholder="手机号">
-                  <van-button slot="button" size="small" type="primary" @click="getCode">获取验证码</van-button>
+                  <van-button
+                    slot="button"
+                    size="small"
+                    type="primary"
+                    @click.prevent="getCode"
+                  >获取验证码</van-button>
                 </van-field>
               </van-cell-group>
               <van-cell-group>
-                <van-field v-model="yzm2" placeholder="验证码" />
+                <van-field v-model="code" placeholder="验证码" />
               </van-cell-group>
               <section class="login-hint">
                 温馨提示：未注册硅谷外卖帐号的手机号，登录时将自动注册，且代表已同意
                 <a href="javascript:;">《用户服务协议》</a>
               </section>
-              <van-button type="primary" size="large">登录</van-button>
+              <van-button type="primary" size="large" @click="duanxiLogin">登录</van-button>
               <a href="javascript:;" class="about-u">关于我们</a>
             </div>
           </van-tab>
@@ -51,21 +57,33 @@
   </div>
 </template>
 <script>
+import { reqPwdLogin, reqSendCode } from '../../api/api.js';
 export default {
-  name: "component_name",
+  name: 'component_name',
   data() {
     return {
-      num: "",
-      mima: "",
-      yzm1: "",
-      phone: "",
-      yzm2: "",
+      num: '',
+      mima: '',
+      captcha: '',
+      phone: '',
+      code: '',
       active: 2
     };
   },
   methods: {
-    getCode() {
-      alert(1111);
+    async getCode() {
+      alert('获取短息验证码');
+      let result = await reqSendCode(this.phone);
+      console.log(result);
+    },
+    async nameLogin() {
+      let { num, mima, captcha } = this;
+      let result = await reqPwdLogin(num, mima, captcha);
+      console.log(result);
+    },
+    chekImg() {
+      this.$refs.chekImg.src =
+        'http://localhost:4000/captcha?que=' + Date.now();
     }
   }
 };
@@ -91,9 +109,15 @@ export default {
         text-align: center;
       }
       .login-title {
+        position: relative;
         text-align: center;
         margin-top: 20px;
         margin-bottom: 20px;
+        .img {
+          position: absolute;
+          top: -7px;
+          right: -17px;
+        }
         .about_us {
           display: block;
           font-size: 12px;
