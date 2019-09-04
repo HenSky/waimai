@@ -7,7 +7,7 @@
           <i class="iconfont icon-person"></i>
         </div>
         <div class="user-info">
-          <p class="user-info-top">登录/注册</p>
+          <router-link class="user-info-top" tag="p" to="/login">登录/注册</router-link>
           <p>
             <span class="user-icon">
               <i class="iconfont icon-shouji icon-mobile"></i>
@@ -73,17 +73,17 @@
   </div>
 </template>
 <script>
-import HeadTop from '../../components/HeadTop/HeadTop.vue'
+import HeadTop from "../../components/HeadTop/HeadTop.vue";
 
 export default {
-  name: 'component_name',
+  name: "component_name",
   data() {
-    return {}
+    return {};
   },
   components: {
     HeadTop
   }
-}
+};
 </script>
 <style lang='less' scoped>
 .profile {
@@ -199,23 +199,22 @@ export default {
     .iconfont:before {
       font-size: 30px;
     }
-    .iconfont:nth-child(1):before{
-      color:#02a774;
+    .iconfont:nth-child(1):before {
+      color: #02a774;
     }
-    .iconfont:nth-child(2):before{
-      color:#ff5f3e;
+    .iconfont:nth-child(2):before {
+      color: #ff5f3e;
     }
-    .iconfont:nth-child(3):before{
-      color:#f90;
+    .iconfont:nth-child(3):before {
+      color: #f90;
     }
-    .iconfont:nth-child(4):before{
-      color:#02a774;
+    .iconfont:nth-child(4):before {
+      color: #02a774;
     }
 
-    .van-cell--clickable:nth-child(4){
+    .van-cell--clickable:nth-child(4) {
       margin-top: 10px;
     }
-
   }
 }
 </style>

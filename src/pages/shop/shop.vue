@@ -6,7 +6,7 @@
       alt
     />
     <div class="imgHeader">
-      <van-icon name="arrow-left" color="white" class="icon" size="30px" />
+      <van-icon name="arrow-left" color="white" class="icon" @click="$router.back()" size="30px" />
       <img src alt />
     </div>
     <div class="headerText">
@@ -131,7 +131,9 @@
         </div>
       </van-tab>
       <van-tab title="评价">评价</van-tab>
-      <van-tab title="商家"><ShopInfo/></van-tab>
+      <van-tab title="商家">
+        <ShopInfo />
+      </van-tab>
     </van-tabs>
     <div class="footer">
       <div class="footer1">
@@ -202,39 +204,39 @@
   </div>
 </template>
 <script>
-import ShopInfo from './shopInfo/shopInfo'
+import ShopInfo from "./shopInfo/shopInfo";
 
-import BScroll from 'better-scroll' // 滑动库
+import BScroll from "better-scroll"; // 滑动库
 
-import CartControl from '../../components/CartControl/CartControl.vue'
+import CartControl from "../../components/CartControl/CartControl.vue";
 
 export default {
-  name: 'component_name',
+  name: "component_name",
   data() {
     return {
       active: 0, // tab切换的标识,
       show: true
-    }
+    };
   },
   components: {
     CartControl,
     ShopInfo
   },
   mounted() {
-    console.log(document.getElementsByClassName('span'), 'testSpan')
+    console.log(document.getElementsByClassName("span"), "testSpan");
 
-    console.log(document.querySelector('.food_left'), '111111111111111')
+    console.log(document.querySelector(".food_left"), "111111111111111");
     this.$nextTick(() => {
       console.log(
-        document.querySelector('.food_left'),
-        '2222222222222222222222'
-      )
+        document.querySelector(".food_left"),
+        "2222222222222222222222"
+      );
 
-      let scrollLeft = new BScroll('.food_left')
-      let scrollRight = new BScroll('.food_right')
-    })
+      let scrollLeft = new BScroll(".food_left");
+      let scrollRight = new BScroll(".food_right");
+    });
   }
-}
+};
 </script>
 
 <style lang="less" scope>

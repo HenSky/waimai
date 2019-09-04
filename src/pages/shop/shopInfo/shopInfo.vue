@@ -108,6 +108,9 @@
 </template>
 <script>
 // import { mapState } from 'vuex'
+import Swiper from "swiper";
+import "swiper/dist/css/swiper.min.css";
+
 export default {
   name: "component_name",
   data() {

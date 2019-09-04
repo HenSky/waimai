@@ -10,11 +10,6 @@ import './mock/mockServer.js' // 引入mock数据
 
 import './vantPulugin/vantImport.js'
 
-import Swiper from "swiper";
-
-import "swiper/dist/css/swiper.min.css";
-
-
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
