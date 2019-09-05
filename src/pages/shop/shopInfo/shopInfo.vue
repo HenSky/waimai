@@ -5,7 +5,7 @@
       <section class="section">
         <h3 class="section-title">配送信息</h3>
         <div class="active">
-          <van-tag type="primary" class="tag">硅谷专送</van-tag>
+          <van-tag type="primary" class="tag">硅谷</van-tag>
           <span>由商家配送提供配送，约28分钟送达，距离1000m</span>
         </div>
         <div class="delivery-money">配送费￥5</div>
@@ -108,21 +108,24 @@
 </template>
 <script>
 // import { mapState } from 'vuex'
-import Swiper from "swiper";
-import "swiper/dist/css/swiper.min.css";
+import Swiper from 'swiper'
+import 'swiper/dist/css/swiper.min.css'
 
 export default {
-  name: "component_name",
+  name: 'component_name',
   data() {
-    return { swiper: null };
+    return { swiper: null }
   },
   // computed: {
   //   ...mapState(['info'])
   // },
 
   mounted() {
+    let result = this.$apis.reqAddress()
+    console.log(result)
+
     this.$nextTick(() => {
-      this.swiper = new Swiper(".swiper-container", {
+      this.swiper = new Swiper('.swiper-container', {
         // autoplay: 3000,
         // speed: 1000,
         // autoplayDisableOnInteraction: false,
@@ -133,10 +136,10 @@ export default {
         // paginationClickable: true,
         // prevButton: '.swiper-button-prev',
         // nextButton: '.swiper-button-next'
-      });
-    });
+      })
+    })
   }
-};
+}
 </script>
 <style lang='less' scoped>
 .info-content {
