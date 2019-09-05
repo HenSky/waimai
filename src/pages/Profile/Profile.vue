@@ -1,25 +1,27 @@
 <template>
   <div class="profile">
     <HeadTop />
-    <section class="profile-number">
-      <a href="javascript:" class="profile-link">
-        <div class="profile_image">
-          <i class="iconfont icon-person"></i>
-        </div>
-        <div class="user-info">
-          <router-link class="user-info-top" tag="p" to="/login">登录/注册</router-link>
-          <p>
-            <span class="user-icon">
-              <i class="iconfont icon-shouji icon-mobile"></i>
-            </span>
-            <span class="icon-mobile-number">暂无绑定手机号</span>
-          </p>
-        </div>
-        <span class="arrow">
-          <i class="iconfont icon-jiantou1"></i>
-        </span>
-      </a>
-    </section>
+    <router-link :to="userInfo._id?'/userinfo':'/login'" class="profile-link">
+      <section class="profile-number">
+        <a href="javascript:" class="profile-link">
+          <div class="profile_image">
+            <i class="iconfont icon-person"></i>
+          </div>
+          <div class="user-info">
+            <p class="user-info-top" v-if="!userInfo.phone">{{userInfo.name || '登录/注册'}}</p>
+            <p>
+              <span class="user-icon">
+                <i class="iconfont icon-shouji icon-mobile"></i>
+              </span>
+              <span class="icon-mobile-number">{{userInfo.phone||'暂无绑定手机号'}}</span>
+            </p>
+          </div>
+          <span class="arrow">
+            <i class="iconfont icon-jiantou1"></i>
+          </span>
+        </a>
+      </section>
+    </router-link>
 
     <section class="profile_info_data border-1px">
       <ul class="info_data_list">
@@ -70,20 +72,40 @@
         </template>
       </van-cell>
     </div>
+    <van-button type="danger" style="width: 100%; margin-top:10px;">退出登录</van-button>
   </div>
 </template>
 <script>
-import HeadTop from "../../components/HeadTop/HeadTop.vue";
+import { mapState } from 'vuex'
+import HeadTop from '../../components/HeadTop/HeadTop.vue'
 
 export default {
-  name: "component_name",
+  name: 'component_name',
   data() {
-    return {};
+    return {
+
+    }
+  },
+  created() {
+    console.log('11111111111111111111')
+    this.getUserinfo()
+  },
+  methods: {
+    async getUserinfo() {
+      const data = await this.$apis.reqUserInfo()
+      console.log(data)
+
+      // if (code !== 0) return this.$Toast(data)
+    }
+
+  },
+  computed: {
+    ...mapState(['userInfo'])
   },
   components: {
     HeadTop
   }
-};
+}
 </script>
 <style lang='less' scoped>
 .profile {

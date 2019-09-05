@@ -15,9 +15,10 @@ export default {
   name: 'component_name',
   mounted() {
     this.getAddress()
+    this.getUserInfo()
   },
   methods: {
-    ...mapActions(['getAddress'])
+    ...mapActions(['getAddress', 'getUserInfo'])
   },
   data() {
     return {}

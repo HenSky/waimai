@@ -1,13 +1,17 @@
 import {
   reqAddress,
   reqFoodsType,
-  reqShopList
+  reqShopList,
+  reqUserInfo,
+  reqLogout
 } from '../api/api.js' // 导入获取数据的api
 
 import {
   RECEIVE_ADDRESS, // 接收地址
   RECEIVE_SHOPLIST, // 接收商铺列表
-  RECEIVE_GOODSTYPE // 接收食品列表
+  RECEIVE_GOODSTYPE, // 接收食品列表
+  RECEIVE_USER_INFO,
+  RESET_USER_INFO
 } from './mutations-type.js'
 
 export default {
@@ -37,6 +41,27 @@ export default {
     if (code !== 0) return
     console.log(data, '商家列表')
     commit(RECEIVE_SHOPLIST, { 'shopList': data })
+  },
+  // TODO: 同步记录用户信息
+  recordUser ({ commit }, userInfo) {
+    commit(RECEIVE_USER_INFO, { userInfo })
+  },
+
+  // 异步获取用户信息
+  async getUserInfo({ commit }) {
+    const result = await reqUserInfo()
+    if (result.code === 0) {
+      const userInfo = result.data
+      commit(RECEIVE_USER_INFO, { userInfo })
+    }
+  },
+
+  // 异步登出
+  async logout ({ commit }) {
+    const result = await reqLogout()
+    if (result.code === 0) {
+      commit(RESET_USER_INFO)
+    }
   }
 
 }

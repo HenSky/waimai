@@ -3,5 +3,6 @@ export default {
   longitude: '116.36867', // 纬度
   address: {}, // 地址对象
   foodsType: [], // 食品分类列表
-  shopList: [] // 商家列表,
+  shopList: [], // 商家列表,
+  userInfo: {} // 用户信息
 }
