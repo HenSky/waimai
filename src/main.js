@@ -10,6 +10,8 @@ import "./mock/mockServer.js"; //引入mock数据
 
 import "./vantPulugin/vantImport.js";
 
+import '../node_modules/lib-flexible'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
