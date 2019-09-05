@@ -233,10 +233,7 @@ export default {
 
     console.log(document.querySelector(".food_left"), "111111111111111");
     this.$nextTick(() => {
-      console.log(
-        document.querySelector(".food_left"),
-        "2222222222222222222222"
-      );
+      console.log(document.querySelector(".food_left"));
 
       let scrollLeft = new BScroll(".food_left");
       let scrollRight = new BScroll(".food_right");

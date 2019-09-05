@@ -121,6 +121,8 @@ export default {
   // },
 
   mounted() {
+    let result = this.$apis.reqShopInfo();
+    console.log(result);
     this.$nextTick(() => {
       this.swiper = new Swiper(".swiper-container", {
         // autoplay: 3000,

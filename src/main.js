@@ -14,7 +14,6 @@ import router from './router/index.js'
 import store from '../src/store/store.js' // 引入store
 
 import $apis from "./api/api.js";
-import './mock/mockServer.js' // 引入mock数据
 
 
 Vue.prototype.$apis = $apis;
