@@ -108,23 +108,23 @@
 </template>
 <script>
 // import { mapState } from 'vuex'
-import Swiper from "swiper";
-import "swiper/dist/css/swiper.min.css";
+import Swiper from 'swiper'
+import 'swiper/dist/css/swiper.min.css'
 
 export default {
-  name: "component_name",
+  name: 'component_name',
   data() {
-    return { swiper: null };
+    return { swiper: null }
   },
   // computed: {
   //   ...mapState(['info'])
   // },
 
   mounted() {
-    let result = this.$apis.reqShopInfo();
-    console.log(result);
+    let result = this.$apis.reqShopInfo()
+    console.log(result)
     this.$nextTick(() => {
-      this.swiper = new Swiper(".swiper-container", {
+      this.swiper = new Swiper('.swiper-container', {
         // autoplay: 3000,
         // speed: 1000,
         // autoplayDisableOnInteraction: false,
@@ -135,10 +135,10 @@ export default {
         // paginationClickable: true,
         // prevButton: '.swiper-button-prev',
         // nextButton: '.swiper-button-next'
-      });
-    });
+      })
+    })
   }
-};
+}
 </script>
 <style lang='less' scoped>
 .info-content {

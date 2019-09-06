@@ -6,4 +6,4 @@ export const RECEIVE_SHOPLIST = 'receive_shoplist'// 根据经纬度获取商铺
 
 export const RECEIVE_SHOPINFO = 'receive_shopinfo'// 获取商家详细信息
 
-export const RECEIVE_FOODS = "receive_foods" //获取商家食物列表
+export const RECEIVE_FOODS = 'receive_foods' // 获取商家食物列表
