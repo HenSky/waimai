@@ -35,92 +35,45 @@
         <div class="food">
           <div class="food_left">
             <ul>
-              <li>
-                <span>优惠</span>
-              </li>
-              <li v-for="(item, index) in 30" :key="index">
+              <li
+                v-for="(food, index) in foods"
+                :key="index"
+                :class="{liActive:index==currentIndex}"
+                @click="itemClick(index)"
+              >
                 <span>
-                  <img
-                    width="15px"
-                    height="15px"
-                    src="https://fuss10.elemecdn.com/b/91/8cf4f67e0e8223931cd595dc932fepng.png"
-                    alt
-                  />
-                  优惠
+                  <img width="15px" height="15px" :src="food.icon" v-if="food.icon" alt />
+                  {{food.name}}
                 </span>
               </li>
             </ul>
           </div>
           <div class="food_right">
-            <ul>
-              <li v-for="(item, index) in 5" :key="index">
-                <p class="title">优惠</p>
+            <ul ref="foodsUl">
+              <li v-for="(food, index) in foods" :key="index">
+                <p class="title">{{food.name}}</p>
                 <ul>
-                  <li class="img_title">
+                  <li
+                    @click="showFoodInfo(foodinfo)"
+                    class="img_title"
+                    v-for="(foodinfo, index) in food.foods"
+                    :key="index"
+                  >
                     <div class="img">
-                      <img
-                        width="57"
-                        height="57"
-                        alt
-                        src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114"
-                      />
+                      <img width="57" height="57" alt :src="foodinfo.icon" />
                     </div>
                     <div class="content">
-                      <p class="c_title">南瓜粥</p>
-                      <p class="c_title1">甜粥</p>
+                      <p class="c_title">{{foodinfo.name}}</p>
+                      <p class="c_title1">{{foodinfo.description}}</p>
                       <p class="c_title2">
-                        <span style="margin-right:10px;">月售91份</span>
-                        <span>好评率100%</span>
+                        <span style="margin-right:10px;">月售{{foodinfo.sellCount}}份</span>
+                        <span>好评率{{foodinfo.rating}}%</span>
                       </p>
                       <p class="c_title3">
-                        <span class="c3span1" style="color:red">$8</span>
+                        <span class="c3span1" style="color:red">￥{{foodinfo.price}}</span>
                         <span class="c3span2">
-                          <CartControl />
+                          <CartControl :foodinfo="foodinfo" />
                         </span>
-                      </p>
-                    </div>
-                  </li>
-                  <li class="img_title">
-                    <div class="img">
-                      <img
-                        width="57"
-                        height="57"
-                        alt
-                        src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114"
-                      />
-                    </div>
-                    <div class="content">
-                      <p class="c_title">南瓜粥</p>
-                      <p class="c_title1">甜粥</p>
-                      <p class="c_title2">
-                        <span style="margin-right:10px;">月售91份</span>
-                        <span>好评率100%</span>
-                      </p>
-                      <p class="c_title3">
-                        <span style="margin-right:90px;color:red">$8</span>
-                        <span>加减</span>
-                      </p>
-                    </div>
-                  </li>
-                  <li class="img_title">
-                    <div class="img">
-                      <img
-                        width="57"
-                        height="57"
-                        alt
-                        src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/114/h/114"
-                      />
-                    </div>
-                    <div class="content">
-                      <p class="c_title">南瓜粥</p>
-                      <p class="c_title1">甜粥</p>
-                      <p class="c_title2">
-                        <span style="margin-right:10px;">月售91份</span>
-                        <span>好评率100%</span>
-                      </p>
-                      <p class="c_title3">
-                        <span style="margin-right:90px;color:red">$8</span>
-                        <span>加减</span>
                       </p>
                     </div>
                   </li>
@@ -137,18 +90,18 @@
     </van-tabs>
     <div class="footer">
       <div class="footer1">
-        <van-icon name="cart" size="52px" />
+        <van-icon name="cart" size="52px" @click="carShow=!carShow" />
       </div>
       <div class="footer2">
-        <div>$0</div>
-        <div>另需配送费$4元</div>
+        <div>￥0</div>
+        <div>另需配送费￥{{shopInfo.deliveryPrice}}元</div>
       </div>
       <div class="footer3">
         <van-button type="danger">提交</van-button>
       </div>
     </div>
 
-    <van-popup v-model="show" position="bottom" :style="{ height: '20%' }">
+    <van-popup v-model="carShow" position="bottom" :style="{ height: '20%' }">
       <div style="display:flex;juset;justify-content: space-between;background:#eee;">
         <span style="display:block;width:50%;">购物车</span>
         <span style="display:block;width:50%;text-align:right">清空</span>
@@ -187,18 +140,13 @@
       </ul>
     </van-popup>
 
-    <van-popup v-model="show" get-container="#box" :style="{ height: '60%' }">
-      <img
-        width="256"
-        height="256"
-        src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/750/h/750"
-        alt
-      />
-      <p>南瓜粥</p>
-      <p>月售91份 好评率100%</p>
+    <van-popup v-model="infoShow" get-container="#box" :style="{ height: '60%' }">
+      <img width="256" height="256" :src="foodInfo.image" alt />
+      <p>{{foodInfo.name}}</p>
+      <p>月售91份 好评率{{foodInfo.rating}}%</p>
       <p>
-        $9
-        <CartControl />
+        ￥{{foodInfo.price}}
+        <CartControl :foodinfo="foodInfo" />
       </p>
     </van-popup>
   </div>
@@ -210,34 +158,93 @@ import BScroll from "better-scroll"; // 滑动库
 
 import CartControl from "../../components/CartControl/CartControl.vue";
 
+import { mapState } from "vuex";
+import { mapActions } from "vuex";
 export default {
   name: "component_name",
   data() {
     return {
       active: 0, // tab切换的标识,
-      show: true
+      carShow: false, //购物车显示隐藏标识
+      infoShow: false, //商品信息显示隐藏标识
+      scrollY: 0, //动态滚动的scrollY值
+      tops: [], //右边所有li的top值 ,数组
+      foodInfo: {}
     };
   },
   methods: {
+    ...mapActions(["getShopInfo", "getShopGoods"]),
     back() {
       this.$router.back();
-      console.log(111);
+    },
+    _intiTops() {
+      //初始化获取食物li的tops
+      let top = 0;
+      let tops = [];
+      tops.push(top);
+      //console.log(this.$refs.foodsUl.children);
+      //this.$refs.foodsUl.children 是个伪数组 HTMLCollection(9)
+      Array.prototype.slice.call(this.$refs.foodsUl.children).forEach(el => {
+        //console.log(el.clientHeight);
+        top += el.clientHeight;
+        tops.push(top);
+      });
+      this.tops = tops;
+    },
+    _initScrollY() {
+      //动态获取srcollY
+      let scrollType = new BScroll(".food_left", {
+        click: true
+      });
+      this.srcollFood = new BScroll(".food_right", {
+        probeType: 2,
+        click: true
+      });
+      this.srcollFood.on("scroll", ({ x, y }) => {
+        this.scrollY = Math.abs(y);
+      });
+      // 给右侧列表绑定scroll结束的监听,解决probeType不触发惯性滑动
+      this.srcollFood.on("scrollEnd", ({ x, y }) => {
+        this.scrollY = Math.abs(y);
+      });
+    },
+    itemClick(index) {
+      //const scrollY = this.tops[index];
+      // 立即更新scrollY(让点击的分类项成为当前分类);
+      this.scrollY = this.tops[index];
+      // 平滑滑动右侧列表
+      this.srcollFood.scrollTo(0, -this.scrollY, 300);
+    },
+    showFoodInfo(foodinfo) {
+      //查看商品详情
+      this.foodInfo = foodinfo;
+      this.infoShow = true;
     }
   },
   components: {
     CartControl,
     ShopInfo
   },
+  computed: {
+    ...mapState(["shopInfo", "foods"]),
+    currentIndex() {
+      return this.tops.findIndex((top, index) => {
+        return this.scrollY >= top && this.scrollY < this.tops[index + 1];
+      });
+    }
+  },
   mounted() {
-    console.log(document.getElementsByClassName("span"), "testSpan");
-
-    console.log(document.querySelector(".food_left"), "111111111111111");
-    this.$nextTick(() => {
-      console.log(document.querySelector(".food_left"));
-
-      let scrollLeft = new BScroll(".food_left");
-      let scrollRight = new BScroll(".food_right");
-    });
+    console.log(this.currentIndex);
+    this.getShopInfo();
+    this.getShopGoods();
+  },
+  watch: {
+    foods(newVal) {
+      this.$nextTick(() => {
+        this._intiTops();
+        this._initScrollY();
+      });
+    }
   }
 };
 </script>
@@ -318,7 +325,7 @@ export default {
   .food {
     display: flex;
     .food_left {
-      width: 20%;
+      width: 25%;
       background: #f3f5f7;
       height: 333px;
       overflow: hidden;
@@ -331,11 +338,14 @@ export default {
           text-align: center;
           font-size: 14px;
         }
+        .liActive {
+          background: white;
+        }
       }
     }
     .food_right {
       overflow: hidden;
-      width: 80%;
+      width: 75%;
       height: 333px;
       .img_title {
         height: 97px;

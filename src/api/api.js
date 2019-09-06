@@ -29,7 +29,7 @@ export const reqLogout = () => axios('/logout')
 /**
  * 获取商家信息
  */
-export const reqShopInfo = () => axios('/api/info')
+export const reqShopInfo = () => axios('/info')
 
 /**
  * 获取商家评价数组
