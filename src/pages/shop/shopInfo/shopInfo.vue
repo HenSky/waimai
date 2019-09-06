@@ -5,50 +5,41 @@
       <section class="section">
         <h3 class="section-title">配送信息</h3>
         <div class="active">
-          <van-tag type="primary" class="tag">硅谷</van-tag>
-          <span>由商家配送提供配送，约28分钟送达，距离1000m</span>
+          <van-tag type="primary" class="tag">{{list.description}}</van-tag>
+          <span>由商家配送提供配送，约{{list.deliveryTime}}分钟送达，距离{{list.distance}}</span>
         </div>
-        <div class="delivery-money">配送费￥5</div>
+        <div class="delivery-money">配送费￥{{list.deliveryPrice}}</div>
       </section>
       <section class="section">
         <h3 class="section-title">活动与服务</h3>
-        <div class="active">
-          <van-tag type="success" class="tag">首单</van-tag>
-          <span>新用户下单立减17元(不与其他活动同享)</span>
+        <div class="active" v-for="(support,index) in list.supports" :key="index">
+          <van-tag type="success" class="tag">{{support.name}}</van-tag>
+          <!-- <span class="content-tag">
+            <span class="mini-tag">{{support.name}}</span>
+          </span>-->
+          <span class="activity-content">{{support.content}}</span>
         </div>
-        <div class="active">
-          <van-tag type="danger" class="tag">满减</van-tag>
+        <!-- <div class="active">
+          <van-tag type="danger" class="tag"></van-tag>
           <span>满35减19 满65减35</span>
         </div>
         <div class="active">
           <van-tag type="warning" class="tag">特价</van-tag>
           <span>[立减19.5元] 欢乐小食餐</span>
-        </div>
-        <!-- <div class="active">
-        <van-tag type="warning" class="tag">特价</van-tag>
-        <span>[立减19.5元] 欢乐小食餐</span>
-      </div>
-      <div class="active">
-        <van-tag type="warning" class="tag">特价</van-tag>
-        <span>[立减19.5元] 欢乐小食餐</span>
-      </div>
-      <div class="active">
-        <van-tag type="warning" class="tag">特价</van-tag>
-        <span>[立减19.5元] 欢乐小食餐</span>
         </div>-->
       </section>
       <section class="section">
         <h3 class="section-title">商家实景</h3>
         <div class="swiper-container">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
+            <div class="swiper-slide" v-for="(pic,index) in list.pics" :key="index">
               <img
-                width="120px"
+                width="100%"
                 height="90px"
-                src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1874949404,1045492423&fm=26&gp=0.jpg"
+                :src="pic"
               />
             </div>
-            <div class="swiper-slide">
+            <!-- <div class="swiper-slide">
               <img
                 width="120px"
                 height="90px"
@@ -82,25 +73,18 @@
                 height="90px"
                 src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1874949404,1045492423&fm=26&gp=0.jpg"
               />
-            </div>
+            </div> -->
           </div>
-
-          <!-- 如果需要分页器 -->
           <div class="swiper-pagination"></div>
-          <!-- 如果需要导航按钮 -->
-          <!-- <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>-->
-          <!-- 如果需要滚动条 -->
-          <!-- <div class="swiper-scrollbar"></div> -->
         </div>
       </section>
       <section class="section">
         <h3 class="section-title">商家信息</h3>
         <van-cell-group>
-          <van-cell title="品类" value="包子粥店,简餐" />
-          <van-cell title="商家电话" value="18501083777" />
-          <van-cell title="地址" value="北京市丰台区太平桥44号" />
-          <van-cell title="营业时间" value="09:35-24:00" />
+          <van-cell title="品类" :value="list.category" />
+          <van-cell title="商家电话" :value="list.phone" />
+          <van-cell title="地址" :value="list.address" />
+          <van-cell title="营业时间" :value="list.workTime" />
         </van-cell-group>
       </section>
     </div>
@@ -113,31 +97,31 @@ import 'swiper/dist/css/swiper.min.css'
 
 export default {
   name: 'component_name',
+
   data() {
-    return { swiper: null }
+    return {
+      swiper: null,
+      list: {}
+      // supportClasses: ['activity-green', 'activity-red', 'activity-orange']
+    }
   },
-  // computed: {
-  //   ...mapState(['info'])
-  // },
+  created() {
+    this.mounted()
+  },
+  methods: {
+    async mounted() {
+      let result = await this.$apis.reqShopInfo()
+      this.list = result.data
 
-  mounted() {
-    let result = this.$apis.reqAddress()
-    console.log(result)
-
-    this.$nextTick(() => {
-      this.swiper = new Swiper('.swiper-container', {
-        // autoplay: 3000,
-        // speed: 1000,
-        // autoplayDisableOnInteraction: false,
-        // loop: true,
-        // centeredSlides: true,
-        slidesPerView: 3
-        // pagination: '.swiper-pagination',
-        // paginationClickable: true,
-        // prevButton: '.swiper-button-prev',
-        // nextButton: '.swiper-button-next'
+      console.log(this.list)
+      console.log(result)
+      this.$nextTick(() => {
+        this.swiper = new Swiper('.swiper-container', {
+          slidesPerView: 3,
+          spaceBetween: 12
+        })
       })
-    })
+    }
   }
 }
 </script>
@@ -164,9 +148,24 @@ export default {
       margin-top: 16px;
     }
     .tag {
+      // .content-tag {
       color: #fff;
       margin-right: 10px;
+      // width: 36px;
+      // height: 18px;
+      // display: inline-block;
+      // border: 1px solid #000;
+      // .activity-red {
+      //   background-color: red;
+      // }
+      // .activity-green {
+      //   background-color: green;
+      // }
+      // .activity-orange {
+      //   background-color: orange;
+      // }
     }
+
     .delivery-money {
       margin-top: 5px;
       font-size: 13px;

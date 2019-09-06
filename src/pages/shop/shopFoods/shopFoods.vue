@@ -54,91 +54,91 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 
-import BScroll from "better-scroll"; //滑动库
+import BScroll from 'better-scroll' // 滑动库
 
-import CartControl from "../../../components/CartControl/CartControl.vue";
+import CartControl from '../../../components/CartControl/CartControl.vue'
 
 export default {
-  name: "component_name",
+  name: 'component_name',
   data() {
     return {
-      scrollY: 0, //动态滚动的scrollY值
-      tops: [] //右边所有li的top值 ,数组
-    };
+      scrollY: 0, // 动态滚动的scrollY值
+      tops: [] // 右边所有li的top值 ,数组
+    }
   },
   components: {
     CartControl
   },
   methods: {
     _intiTops() {
-      //初始化获取食物li的tops
-      let top = 0;
-      let tops = [];
-      tops.push(top);
-      //console.log(this.$refs.foodsUl.children);
-      //this.$refs.foodsUl.children 是个伪数组 HTMLCollection(9)
+      // 初始化获取食物li的tops
+      let top = 0
+      let tops = []
+      tops.push(top)
+      // console.log(this.$refs.foodsUl.children);
+      // this.$refs.foodsUl.children 是个伪数组 HTMLCollection(9)
       Array.prototype.slice.call(this.$refs.foodsUl.children).forEach(el => {
-        //console.log(el.clientHeight);
-        top += el.clientHeight;
-        tops.push(top);
-      });
-      this.tops = tops;
+        // console.log(el.clientHeight);
+        top += el.clientHeight
+        tops.push(top)
+      })
+      this.tops = tops
     },
     _initScrollY() {
-      //动态获取srcollY
-      let scrollType = new BScroll(".menu-wrapper", {
+      // 动态获取srcollY
+      let scrollType = new BScroll('.menu-wrapper', {
         click: true
-      });
-      this.srcollFood = new BScroll(".foods-wrapper", {
+      })
+      this.srcollFood = new BScroll('.foods-wrapper', {
         probeType: 2,
         click: true
-      });
-      this.srcollFood.on("scroll", ({ x, y }) => {
-        this.scrollY = Math.abs(y);
-      });
+      })
+      this.srcollFood.on('scroll', ({ x, y }) => {
+        this.scrollY = Math.abs(y)
+      })
       // 给右侧列表绑定scroll结束的监听,解决probeType不触发惯性滑动
-      this.srcollFood.on("scrollEnd", ({ x, y }) => {
-        console.log("scrollEnd", x, y);
-        this.scrollY = Math.abs(y);
-      });
+      this.srcollFood.on('scrollEnd', ({ x, y }) => {
+        console.log('scrollEnd', x, y)
+        this.scrollY = Math.abs(y)
+      })
     },
     currItem(index) {
-      //点击左边右边滚动
+      // 点击左边右边滚动
       //   let y = this.tops[index];
       //   this.scrollY = y;
       //   this.srcollFood.scrollTo(0, -y, 300);
 
       // 得到目标位置的scrollY
-      const scrollY = this.tops[index];
+      const scrollY = this.tops[index]
       // 立即更新scrollY(让点击的分类项成为当前分类)
-      this.scrollY = scrollY;
+      this.scrollY = scrollY
       // 平滑滑动右侧列表
-      this.srcollFood.scrollTo(0, -scrollY, 300);
+      this.srcollFood.scrollTo(0, -scrollY, 300)
     }
   },
   mounted() {
-    this.$store.dispatch("getShopGoods", () => {
-      //console.log(this, "this");
-      //数据异步获取成功后的回调函数
+    this.$store.dispatch('getShopGoods', () => {
+      // console.log(this, "this");
+      // 数据异步获取成功后的回调函数
       this.$nextTick(() => {
-        this._intiTops();
-        this._initScrollY();
-      });
-    });
+        this._intiTops()
+        this._initScrollY()
+      })
+    })
   },
   computed: {
-    ...mapState(["shopGoods"]),
+    ...mapState(['shopGoods']),
     currentIndex() {
-      //计算属性什么时候执行: 初始和相关数据发生了变化
-      //计算属性,返回true或者false,主要看滑动的srcollY是否在tops某2个值的区间
+      // 计算属性什么时候执行: 初始和相关数据发生了变化
+      // 计算属性,返回true或者false,主要看滑动的srcollY是否在tops某2个值的区间
       return this.tops.findIndex((top, index) => {
-        return this.scrollY >= top && this.scrollY < this.tops[index + 1];
-      });
+        return this.scrollY >= top && this.scrollY < this.tops[index + 1]
+      })
     }
   }
-};
+}
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
 @import '../../../common/stylus/mixins.styl';
