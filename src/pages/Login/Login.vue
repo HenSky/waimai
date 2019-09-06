@@ -8,16 +8,12 @@
           <van-tab title="密码登录" class="on">
             <div class="login-content">
               <van-cell-group class="login-user">
-                <van-field v-model="num" placeholder="手机/邮箱/用户名" />
+                <van-field v-model="name" clearable placeholder="手机/邮箱/用户名" />
               </van-cell-group>
               <van-cell-group class="login-mima">
-                <van-field
-                  v-model="mima"
-                  placeholder="密码"
-                  right-icon="question-o"
-                  @click-right-icon="$toast('question')"
-                />
+                <van-field v-model="pwd" placeholder="密码" />
               </van-cell-group>
+              <van-switch v-model="checked" active-color="#02a774" class="disabled" />
               <van-cell-group>
                 <van-field v-model="captcha" placeholder="验证码">
                   <van-image slot="image" size="small" type="primary"></van-image>
@@ -33,13 +29,13 @@
           <van-tab title="短信登录">
             <div class="login-con">
               <van-cell-group>
-                <van-field v-model="phone" placeholder="手机号">
+                <van-field v-model="phone" center clearable placeholder="手机号">
                   <van-button
                     slot="button"
                     size="small"
                     type="primary"
                     @click.prevent="getCode"
-                  >获取验证码</van-button>
+                  >{{computeTime > 0 ? computeTime + 'S' : '获取验证码'}}</van-button>
                 </van-field>
               </van-cell-group>
               <van-cell-group>
@@ -48,7 +44,7 @@
                 </van-field>-->
               </van-cell-group>
               <van-cell-group>
-                <van-field v-model="yzm2" placeholder="验证码" />
+                <van-field v-model="code" clearable placeholder="验证码" />
               </van-cell-group>
               <section class="login-hint">
                 温馨提示：未注册硅谷外卖帐号的手机号，登录时将自动注册，且代表已同意
@@ -63,15 +59,17 @@
     </div>
   </div>
 </template>
- <script>
-import { reqPwdLogin, reqSendCode } from "../../api/api.js";
-import { Script } from "vm";
+<script>
+import { reqPwdLogin, reqSendCode, reqSmsLogin } from "../../api/api.js";
+import { setInterval, clearInterval } from "timers";
 export default {
   name: "component_name",
   data() {
     return {
-      num: "",
-      mima: "",
+      checked: true,
+      computeTime: 0,
+      name: "",
+      pwd: "",
       captcha: "",
       phone: "",
       code: "",
@@ -80,14 +78,28 @@ export default {
   },
   methods: {
     async getCode() {
-      alert("获取短息验证码");
       let result = await reqSendCode(this.phone);
+      console.log(result);
+      if (this.computeTime === 0) {
+        this.computeTime = 5;
+        this.intervalId = setInterval(() => {
+          this.computeTime--;
+          if (this.computeTime === 0) {
+            clearInterval(this.intervalId);
+          }
+        }, 1000);
+      }
+    },
+    async duanxiLogin() {
+      let { phone, code } = this;
+      let result = await reqSmsLogin(phone, code);
       console.log(result);
     },
     async nameLogin() {
-      let { num, mima, captcha } = this;
-      let result = await reqPwdLogin(num, mima, captcha);
+      let { name, pwd, captcha } = this;
+      let result = await reqPwdLogin({ name, pwd, captcha });
       console.log(result);
+      if (this.result == 0)  return this.$Toast("登录成功");
     },
     chekImg() {
       this.$refs.chekImg.src =
@@ -126,9 +138,11 @@ export default {
           top: -7px;
           right: -17px;
         }
-        text-align: center;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        .disabled {
+          position: absolute;
+          top: 94px;
+          left: 234px;
+        }
         .about_us {
           display: block;
           font-size: 12px;
