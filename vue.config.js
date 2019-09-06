@@ -1,4 +1,4 @@
-const data = require("./src/mock/data.json");
+const data = require('./src/mock/data.json')
 
 module.exports = {
   runtimeCompiler: true,
@@ -6,13 +6,22 @@ module.exports = {
   devServer: {
     before(app) {
       app.get('/api/info', (req, res) => {
-        res.json({ code: 0, data: data.info })
-      }),
+          res.json({
+            code: 0,
+            data: data.info
+          })
+        }),
         app.get('/api/goods', (req, res) => {
-          res.json({ code: 0, data: data.goods })
+          res.json({
+            code: 0,
+            data: data.goods
+          })
         }),
         app.get('/api/ratings', (req, res) => {
-          res.json({ code: 0, data: data.ratings })
+          res.json({
+            code: 0,
+            data: data.ratings
+          })
         })
     },
     // open: process.platform === 'darwin',
