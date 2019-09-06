@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
   <div>
     <div class="goods">
@@ -281,3 +282,5 @@ export default {
   }
 }
 </style>
+=======
+>>>>>>> master

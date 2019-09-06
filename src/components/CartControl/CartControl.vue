@@ -1,17 +1,34 @@
 <template>
   <div>
-    <span class="jian">-</span>
-    <span class="num">1</span>
-    <span class="jia">+</span>
+    <span class="jian" v-if="foodinfo.count>=1" @click.stop="jian">-</span>
+    <span class="num" v-if="foodinfo.count>=1">{{foodinfo.count}}</span>
+    <span class="jia" @click.stop="jia">+</span>
   </div>
 </template>
 <script>
+import Vue from "vue";
 export default {
   name: "component_name",
   data() {
     return {
       value: 1
     };
+  },
+  methods: {
+    jia() {
+      if (this.foodinfo.count) {
+        this.foodinfo.count++;
+      } else {
+        Vue.set(this.foodinfo, "count", 1);
+      }
+      console.log(this.foodinfo.count);
+    },
+    jian() {
+      this.foodinfo.count--;
+    }
+  },
+  props: {
+    foodinfo: Object
   }
 };
 </script>

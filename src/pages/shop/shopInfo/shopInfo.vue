@@ -105,6 +105,7 @@ export default {
       // supportClasses: ['activity-green', 'activity-red', 'activity-orange']
     }
   },
+
   created() {
     this.mounted()
   },
@@ -112,7 +113,6 @@ export default {
     async mounted() {
       let result = await this.$apis.reqShopInfo()
       this.list = result.data
-
       console.log(this.list)
       console.log(result)
       this.$nextTick(() => {

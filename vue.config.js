@@ -6,6 +6,7 @@ module.exports = {
   devServer: {
     before(app) {
       app.get('/api/info', (req, res) => {
+<<<<<<< HEAD
         res.json({ code: 0, data: data.info })
       }),
       app.get('/api/goods', (req, res) => {
@@ -14,6 +15,25 @@ module.exports = {
       app.get('/api/ratings', (req, res) => {
         res.json({ code: 0, data: data.ratings })
       })
+=======
+          res.json({
+            code: 0,
+            data: data.info
+          })
+        }),
+        app.get('/api/goods', (req, res) => {
+          res.json({
+            code: 0,
+            data: data.goods
+          })
+        }),
+        app.get('/api/ratings', (req, res) => {
+          res.json({
+            code: 0,
+            data: data.ratings
+          })
+        })
+>>>>>>> master
     },
     // open: process.platform === 'darwin',
     // host: 'localhost',

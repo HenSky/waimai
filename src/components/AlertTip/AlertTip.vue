@@ -3,11 +3,11 @@
 </template>
 <script>
 export default {
-  name: "component_name",
+  name: 'component_name',
   data() {
-    return {};
+    return {}
   }
-};
+}
 </script>
 <style lang='less' scoped>
 </style>

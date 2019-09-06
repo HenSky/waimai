@@ -2,7 +2,9 @@
 import {
   RECEIVE_ADDRESS, // 接收地址
   RECEIVE_SHOPLIST, // 接收商铺列表
-  RECEIVE_GOODSTYPE // 接收食品列表,
+  RECEIVE_GOODSTYPE, // 接收食品列表,
+  RECEIVE_SHOPINFO,
+  RECEIVE_FOODS
 } from './mutations-type.js'
 
 export default {
@@ -15,6 +17,11 @@ export default {
   },
   [RECEIVE_SHOPLIST](state, { shopList }) {
     state.shopList = shopList
+  },
+  [RECEIVE_SHOPINFO](state, { shopInfo }) {
+    state.shopInfo = shopInfo
+  },
+  [RECEIVE_FOODS](state, { foods }) {
+    state.foods = foods
   }
-
 }
